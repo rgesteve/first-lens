@@ -1,5 +1,22 @@
+{-# LANGUAGE TemplateHaskell #-}
+
 module Main where
+
+import Lens.Micro
+import Lens.Micro.TH
+import Lens.Micro.Mtl -- for `view` for now (could be using `Lens.Micro.Extras` instead)
+
+data Atom = Atom { _element :: String, _point :: Point } deriving (Show)
+data Point = Point { _x :: Double, _y :: Double } deriving (Show)
+
+makeLenses ''Atom
+makeLenses ''Point
 
 main :: IO ()
 main = do
-  putStrLn "hello world"
+  let atom = Atom { _element = "C", _point = Point { _x = 1.0, _y = 2.0 } }
+  --putStrLn "hello atom " ++ ( atom ^. point . x )
+  putStrLn "hello atom " 
+  -- putStrLn ( atom ^. point . x )
+  putStrLn ( atom ^. element )
+  putStrLn ( view element atom)
