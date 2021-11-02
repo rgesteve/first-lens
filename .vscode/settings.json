@@ -1,0 +1,9 @@
+{
+    "files.exclude" : {
+        ".stack-work/" : true
+    },
+    "search.exclude" : {
+        ".stack-work/" : true
+    },
+    "editor.defaultFormatter": "haskell.haskell"
+}
